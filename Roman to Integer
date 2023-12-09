@@ -1,0 +1,49 @@
+class Solution {
+    public int romanToInt(String s) {
+    int answer = 0, number = 0, prev = 0;
+    for (int j = s.length() - 1; j >= 0; j--) {
+        switch (s.charAt(j)) {
+            case 'M' -> number = 1000;
+            case 'D' -> number = 500;
+            case 'C' -> number = 100;
+            case 'L' -> number = 50;
+            case 'X' -> number = 10;
+            case 'V' -> number = 5;
+            case 'I' -> number = 1;
+        }
+        if (number < prev) {
+            answer -= number;
+        }
+        else {
+            answer += number;
+        }
+        prev = number;
+      }
+      return answer;
+    }
+}
+ 
+ /*
+
+ Explanation :
+
+ The program goes through each letter of the Roman numeral from right to left.
+ It assigns a specific value to each letter: 'I' is 1, 'V' is 5, 'X' is 10, 'L'
+ is 50, 'C' is 100, 'D' is 500, and 'M' is 1000.
+
+Then, it compares the value of the current letter with the previous one.
+If the current value is smaller than the previous one, it means that the
+current letter represents a subtraction. In that case, the program subtracts
+the current value from the total. For example, in "IV", 'I' is 1 and 'V' is 5,
+so the program subtracts 1 from 5.
+
+If the current value is not smaller than the previous one, it means that the
+current letter represents an addition. In that case, the program adds the
+current value to the total. For example, in "VI", 'V' is 5 and 'I' is 1, so
+the program adds 5 to 1.
+
+The program keeps track of the previous value to know whether to add or
+subtract the current value. After going through all the letters, it returns
+the final total, which is the regular number equivalent of the Roman numeral.
+
+  */
